@@ -76,9 +76,8 @@ function theme_date_display_combination($element) {
 
   // Check the formatter settings to see if the repeat rule should be
   // displayed. Show it only with the first multiple value date.
-  if (is_object($node))
-  if (!in_array($node->nid, $repeating_ids) && module_exists('date_repeat')
-  && !empty($item['rrule']) && $options['repeat']['show_repeat_rule'] == 'show') {
+  if (isset($node) && is_object($node) && !in_array($node->nid, $repeating_ids) && module_exists('date_repeat')
+  && !empty($item['rule']) && $options['repeat']['show_repeat_rule'] == 'show') {
     require_once('./'. drupal_get_path('module', 'date') .'/date_repeat.inc');
     $output .= theme('date_repeat_display', $field, $item, $node);
     $repeating_ids[] = $node->nid;
